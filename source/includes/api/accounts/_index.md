@@ -468,6 +468,9 @@ response = requests.request("GET", url, headers=headers)
 print(response.text)
 ```
 
+This route will return all user's account details. If the account is a cryptocurrency account, the additional 
+field `WalletAddress` will be returned. This is not a static value.
+
 > Successful response:
 
 ```json
@@ -481,18 +484,23 @@ print(response.text)
             "Overdraft": "0",
             "AvailableBalance": "3507.61865234375",
             "Type": "",
+            "Currency": "usd",
+            "CurrencyType": "",
             "Timestamp": 0
         },
         {
-            "AccountNumber": "c04b7d77-d736-4bf4-952e-b3c35b073179",
+            "AccountNumber": "738e813a-6f8f-498c-9274-dfbae618147b",
             "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
             "AccountHolderName": "Test Merchant Ltd",
             "AccountBalance": "0",
             "Overdraft": "0",
             "AvailableBalance": "0",
             "Type": "",
-            "Timestamp": 0
-        },
+            "Currency": "btc",
+            "CurrencyType": "",
+            "Timestamp": 0,
+            "WalletAddress": "19kS6CczeNTxoKjNwubQGQFmyFQAwwopq"
+        }
 		...
 	]
 }

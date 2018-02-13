@@ -122,32 +122,137 @@ This request takes no parameters.
 ## Get currencies
 
 ```shell
+curl -X GET \
+  https://demo.bvnk.co/currencies \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: 777af451-3b5c-3250-95d4-a48a94af7404' \
+  -H 'X-Auth-Token: d382f67c-5bcc-4d3d-b3a9-9a0253114d33'
 ```
 
 ```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://demo.bvnk.co/currencies"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-Auth-Token", "d382f67c-5bcc-4d3d-b3a9-9a0253114d33")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "1b31660b-cc65-1cdc-ed91-7bb7482a4c69")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
 ```
 
 ```javascript
+var request = require("request");
 
+var options = { method: 'GET',
+  url: 'https://demo.bvnk.co/currencies',
+  headers:
+   { 'Postman-Token': 'fb18d8ae-ceca-651e-c669-bec629a40b9e',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': 'd382f67c-5bcc-4d3d-b3a9-9a0253114d33' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 ```python
+import requests
+
+url = "https://demo.bvnk.co/currencies"
+
+headers = {
+    'X-Auth-Token': "d382f67c-5bcc-4d3d-b3a9-9a0253114d33",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "e3063cd0-5ddf-c7ec-8a4a-e8a1eea594b0"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
 ```
 
 ```java 
+HttpResponse<String> response = Unirest.get("https://demo.bvnk.co/currencies")
+  .header("X-Auth-Token", "d382f67c-5bcc-4d3d-b3a9-9a0253114d33")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "9ce05e22-78c6-45c2-b9a7-1309c4886302")
+  .asString();
 ```
 
 > Successful response:
 
 ```json
+{
+    "response": {
+        "bct": {
+            "Name": "Bitcoin Test",
+            "Code": "bct",
+            "Type": "crypto",
+            "UnitsPerCoin": 100000000,
+            "Timestamp": ""
+        },
+        "btc": {
+            "Name": "Bitcoin",
+            "Code": "btc",
+            "Type": "crypto",
+            "UnitsPerCoin": 100000000,
+            "Timestamp": ""
+        },
+        "gbp": {
+            "Name": "British Pounds",
+            "Code": "gbp",
+            "Type": "fiat",
+            "UnitsPerCoin": 100,
+            "Timestamp": ""
+        },
+        "usd": {
+            "Name": "United States Dollar",
+            "Code": "usd",
+            "Type": "fiat",
+            "UnitsPerCoin": 100,
+            "Timestamp": ""
+        },
+        "zar": {
+            "Name": "South African Rand",
+            "Code": "zar",
+            "Type": "fiat",
+            "UnitsPerCoin": 100,
+            "Timestamp": ""
+        }
+    }
+}
 ```
 
 > Error response:
 
 ```json
+{
+    "error": "Token invalid"
+}
 ```
 
-This endpoint returns a list of currencies available on the deploy. 
+This endpoint returns a list of currencies available on the deploy. The user must be logged in.
 
 ### HTTP Request
 
@@ -155,7 +260,7 @@ This endpoint returns a list of currencies available on the deploy.
 
 ### Headers
 
-This request requires no headers.
+`X-Auth-Token: {auth token}`
 
 ### URL Parameters
 
@@ -281,6 +386,140 @@ Parameter | Required | Description
 SourceCurrency | true | The source currency to convert from. This currency must be supported by the deploy, retrieved from `GET /currencies`.
 DestinationCurrency | true | The destination currency to convert to. This currency must be supported by the deploy, retrieved from `GET /currencies`.
 Amount | true | The amount to convert.
+
+## Get rates
+
+```shell
+curl -X GET \
+  https://demo.bvnk.co/exchange/rates/btc/zar/hour \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: 874ce447-2a99-e848-1e61-829cee013b8d' \
+  -H 'X-Auth-Token: d382f67c-5bcc-4d3d-b3a9-9a0253114d33'
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://demo.bvnk.co/exchange/rates/btc/zar/hour"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-Auth-Token", "d382f67c-5bcc-4d3d-b3a9-9a0253114d33")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "ea4a2a13-e561-e198-5c82-58d4b8c6f694")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://demo.bvnk.co/exchange/rates/btc/zar/hour',
+  headers:
+   { 'Postman-Token': '420b140b-2473-f317-bef0-f5907791e184',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': 'd382f67c-5bcc-4d3d-b3a9-9a0253114d33' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://demo.bvnk.co/exchange/rates/btc/zar/hour"
+
+headers = {
+    'X-Auth-Token': "d382f67c-5bcc-4d3d-b3a9-9a0253114d33",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "714b0b8c-f946-ad74-5859-66a1a9f0cfaa"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+```java
+HttpResponse<String> response = Unirest.get("https://demo.bvnk.co/exchange/rates/btc/zar/hour")
+  .header("X-Auth-Token", "d382f67c-5bcc-4d3d-b3a9-9a0253114d33")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "6b44ae48-388b-d6d4-c2d7-2ab0b17081cc")
+  .asString();
+```
+
+> Successful response:
+
+```json
+{
+    "response": [
+        {
+            "SourceCurrency": "BTC",
+            "DestinationCurrency": "ZAR",
+            "SourceAmount": "1",
+            "DestinationAmount": "12840.95984863280423557421875",
+            "ConversionRate": "12840.9598486328042356",
+            "Timestamp": "2018-02-13 05:35:36"
+        },
+        {
+            "SourceCurrency": "BTC",
+            "DestinationCurrency": "ZAR",
+            "SourceAmount": "1",
+            "DestinationAmount": "12537.90984206437235657421875",
+            "ConversionRate": "12537.9098420643723566",
+            "Timestamp": "2018-02-13 06:35:36"
+        },
+        ...
+    ]
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "Could not retrieve rates"
+}
+```
+
+This route returns market rate data for a given user for two currency pairs. The market rate period is passed 
+through the URL, and a total of fifty data points are returned.
+
+### HTTP Request
+
+`GET https://demo.bvnk.co/exchange/rates/{sourceCurrency}/{destinationCurrency}/{period}`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ----------- | ----------
+SourceCurrency | true | The source currency to convert from. This currency must be supported by the deploy, retrieved from `GET /currencies`.
+DestinationCurrency | true | The destination currency to convert to. This currency must be supported by the deploy, retrieved from `GET /currencies`.
+Period | false | The period to get rates for. Currently supported values: `minute`, `15minute`, `hour`, `4hour`, `day`, `week`, `month`. Default: `hour`.
 
 ## Register customer
 
