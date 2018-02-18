@@ -358,3 +358,255 @@ Parameter | Required | Description
 --------- | ----------- | ----------
 
 There are no parameters for this request, only the `X-Auth-Token` header is required.
+
+## Create Application Authorization
+
+```shell
+curl -X POST \
+  https://demo.bvnk.co/auth/application \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: eafa344a-fad3-0fa1-b6ca-d75b5003bee4' \
+  -H 'X-Auth-Token: a2e8c942-3ffc-45fc-b695-0419d1e69360' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -F ApplicationName=desktop-app
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://demo.bvnk.co/auth/application"
+
+	payload := strings.NewReader("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"ApplicationName\"\r\n\r\ndesktop-app\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+	req.Header.Add("X-Auth-Token", "a2e8c942-3ffc-45fc-b695-0419d1e69360")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "23a51075-e7e2-db35-d0a5-bdd93fe1f79d")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```java
+HttpResponse<String> response = Unirest.post("https://demo.bvnk.co/auth/application")
+  .header("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+  .header("X-Auth-Token", "a2e8c942-3ffc-45fc-b695-0419d1e69360")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "be7387a0-3de7-8072-5e33-32971037002b")
+  .body("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"ApplicationName\"\r\n\r\ndesktop-app\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+  .asString();
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://demo.bvnk.co/auth/application',
+  headers:
+   { 'Postman-Token': '22a28e90-bbf0-a2ea-c0e3-44094d750f10',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': 'a2e8c942-3ffc-45fc-b695-0419d1e69360',
+     'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+  formData: { ApplicationName: 'desktop-app' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://demo.bvnk.co/auth/application"
+
+payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"ApplicationName\"\r\n\r\ndesktop-app\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
+headers = {
+    'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+    'X-Auth-Token': "a2e8c942-3ffc-45fc-b695-0419d1e69360",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "9d0784e2-ce8f-25fe-989a-aeb48f707a4d"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+> A successfull response looks like:
+
+```json
+{
+    "response": "3069ecbc-bf37-421d-a66f-6b78d56fd86f"
+}
+```
+
+> An unsuccessful response looks like:
+
+```json
+{
+    "error": "Application already registered"
+}
+```
+
+This endpoint registers an application for authentication. The application is registered, and an application authorization token is returned. 
+This token can then be used with `/auth/application/login` to authenticate against the server.
+These authentication tokens are application specific, and can be enabled or disabled as well as removed entirely.
+
+The purpose of this route is to allow devices to authenticate against the account without having to store the user's password.
+
+### HTTP Request
+
+`POST https://demo.bvnk.co/auth/application`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+ApplicationName | true | The unique name of the application. This should be set by the application itself, e.g. `ios-app`.
+
+## Log In Using Application Auth
+
+```shell
+curl -X POST \
+  https://demo.bvnk.co/auth/application/login \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: f9c5cf0e-8e5d-1a89-f456-ee48b2375388' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -F User=c12716f5-44c7-4513-a8e4-172da5d9c902 \
+  -F AppToken=649daaad-fd98-4acf-bfa1-98177a708d6e
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://demo.bvnk.co/auth/application/login"
+
+	payload := strings.NewReader("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"User\"\r\n\r\nc12716f5-44c7-4513-a8e4-172da5d9c902\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AppToken\"\r\n\r\n649daaad-fd98-4acf-bfa1-98177a708d6e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "768d24b7-1298-cd01-6b42-60c2b7661cb5")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```java
+HttpResponse<String> response = Unirest.post("https://demo.bvnk.co/auth/application/login")
+  .header("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "df7fbae5-6423-9d22-db71-543671a877dc")
+  .body("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"User\"\r\n\r\nc12716f5-44c7-4513-a8e4-172da5d9c902\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AppToken\"\r\n\r\n649daaad-fd98-4acf-bfa1-98177a708d6e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+  .asString();
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://demo.bvnk.co/auth/application/login',
+  headers:
+   { 'Postman-Token': '96a70e11-3894-0ef6-8107-dda8b7458d74',
+     'Cache-Control': 'no-cache',
+     'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+  formData:
+   { User: 'c12716f5-44c7-4513-a8e4-172da5d9c902',
+     AppToken: '649daaad-fd98-4acf-bfa1-98177a708d6e' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```python
+import requests
+
+url = "https://demo.bvnk.co/auth/application/login"
+
+payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"User\"\r\n\r\nc12716f5-44c7-4513-a8e4-172da5d9c902\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AppToken\"\r\n\r\n649daaad-fd98-4acf-bfa1-98177a708d6e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
+headers = {
+    'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "4030d628-97ba-07e8-d65d-88b87d7f75a8"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+> Successful response:
+
+```json
+{
+    "response": "6836d1f3-2321-45eb-9173-efeaa211a6d5"
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "Authentication invalid"
+}
+```
+
+This endpoint authorizes an application for a user and returns an `auth token` to use in requests which require user level authorization. 
+The `User` value is the `uuid` value received from the [create authorization](#create-authorization) step.
+The `AppToken` value is the `uuid` value received from the [create application authorization](#create-application-authorization) step.
+
+### HTTP Request
+
+`POST https://demo.bvnk.co/auth/application/login`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---------- | -----------
+User | true | The UUID value from create authorization
+AppToken | true | The UUID value for the given application created during application authorization

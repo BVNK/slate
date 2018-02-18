@@ -23,6 +23,7 @@ includes:
   - api/kyc/index
   - api/merchants/index
   - api/exchange/index
+  - api/notifications/index
   - api/integrations/index
 
 search: true

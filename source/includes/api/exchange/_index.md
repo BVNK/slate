@@ -1040,3 +1040,501 @@ This route returns a single request for the given user.
 Parameter | Required | Description
 --------- | ----------- | ----------
 RequestID | true | The ID of the request.
+
+## Get All Available Tokens For Notification
+
+```shell
+curl -X GET \
+  https://debug.bvnk.co/exchange/notify/available \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: 694b3873-fc37-666c-6137-e9d181b7e163' \
+  -H 'X-Auth-Token: 52c1881b-8283-482d-b55b-8530f7790b21'
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://debug.bvnk.co/exchange/notify/available"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "bf8e6c36-9217-efb7-8720-86316c2d8592")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://debug.bvnk.co/exchange/notify/available',
+  headers:
+   { 'Postman-Token': '83fdc412-2fb2-1ba5-f1fb-78c2f88e2f7e',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': '52c1881b-8283-482d-b55b-8530f7790b21' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```python
+import requests
+
+url = "https://debug.bvnk.co/exchange/notify/available"
+
+headers = {
+    'X-Auth-Token': "52c1881b-8283-482d-b55b-8530f7790b21",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "33aa6a1a-4bc3-e4ea-1608-aff9ece992a5"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+```java
+HttpResponse<String> response = Unirest.get("https://debug.bvnk.co/exchange/notify/available")
+  .header("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "4eddb01e-591f-06dc-a015-befc5a4c0155")
+  .asString();
+```
+
+> Successful response:
+
+```json
+{
+    "response": [
+        "btc",
+        "ltc",
+        "dash",
+        "bvk",
+        "eth",
+        "xrp",
+        "neo",
+        "eos",
+        "xml",
+        "ada"
+    ]
+}
+```
+
+> Error response:
+
+```json
+{
+    "error" : "Could not get available tokens"
+}
+```
+
+This route returns all tokens available for notification. These are tokens BVNK plans to support.
+
+### HTTP Request
+
+`GET /exchange/notifiy/available`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+This route requires no parameters
+
+## Add Token Notification
+
+```shell
+curl -X POST \
+  https://debug.bvnk.co/exchange/notify \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: 7fdd101b-ef18-bc5b-1d92-846c61ddddff' \
+  -H 'X-Auth-Token: 52c1881b-8283-482d-b55b-8530f7790b21' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -F Token=bvk
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://debug.bvnk.co/exchange/notify"
+
+	payload := strings.NewReader("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"Token\"\r\n\r\nbvk\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+	req.Header.Add("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "8bdbb57b-5c2c-08b0-4851-53e811583329")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://debug.bvnk.co/exchange/notify',
+  headers:
+   { 'Postman-Token': 'f1f16f52-1a5d-df27-41d8-bdad7b82e393',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': '52c1881b-8283-482d-b55b-8530f7790b21',
+     'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+  formData: { Token: 'bvk' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```python
+import requests
+
+url = "https://debug.bvnk.co/exchange/notify"
+
+payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"Token\"\r\n\r\nbvk\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
+headers = {
+    'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+    'X-Auth-Token': "52c1881b-8283-482d-b55b-8530f7790b21",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "39337541-2cf6-8e97-f314-d6cce075c175"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```java
+HttpResponse<String> response = Unirest.post("https://debug.bvnk.co/exchange/notify")
+  .header("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+  .header("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "70c3f1ac-f119-8df9-f069-5e000f243aa4")
+  .body("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"Token\"\r\n\r\nbvk\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+  .asString();
+```
+
+> Successful response:
+
+```json
+{
+    "response": "Successfully added notification for token bvk"
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "User already signed up for notifications for token bvk"
+}
+```
+
+This route allows a user to be notified about a given token when it becomes available.
+
+### HTTP Request
+
+`POST /exchange/notify`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ----------- | ----------
+Token | true | The token to be notified about. Token list can be retrieved from `/exchange/notify/available`.
+
+## Check Token Notification
+
+```shell
+curl -X GET \
+  https://debug.bvnk.co/exchange/notify/bvk \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: 6afb03d2-db88-10b1-9b0e-16a0c309b604' \
+  -H 'X-Auth-Token: 52c1881b-8283-482d-b55b-8530f7790b21'
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://debug.bvnk.co/exchange/notify/bvk"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "6d845597-6dd7-6270-3f4e-244a6274d4a1")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://debug.bvnk.co/exchange/notify/bvk',
+  headers:
+   { 'Postman-Token': '019e1c5b-4a57-517b-9db9-e1a4f7f46e74',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': '52c1881b-8283-482d-b55b-8530f7790b21' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://debug.bvnk.co/exchange/notify/bvk"
+
+headers = {
+    'X-Auth-Token': "52c1881b-8283-482d-b55b-8530f7790b21",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "4133a49c-ceff-6bcd-744a-a2c1ffa98f77"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+```java
+HttpResponse<String> response = Unirest.get("https://debug.bvnk.co/exchange/notify/bvk")
+  .header("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "b3026c0a-bfd1-3ee2-fcc4-e7dc380dbfc9")
+  .asString();
+```
+
+> Successful response:
+
+```json
+{
+    "response": {
+        "Token": "bvk",
+        "Notified": false,
+        "Timestamp": "2018-02-17 07:16:25"
+    }
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "User not signed up for notifications on token bvk"
+}
+```
+
+This route checks if a user is signed up to be notified about a given token. Response includes `Token`, `Notified` and `Timestamp`. If the user is not signed up for notifications for given token, an error is returned.
+
+`Token` is the token symbol, `Notified` is a boolean representing the state of notification for that token, and `Timestamp` is when the notification was added or updated.
+
+### HTTP Request
+
+`GET /exchange/notify/{token}`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ----------- | ----------
+Token | true | The token to be check notifiactions for. Token list can be retrieved from `/exchange/notify/available`.
+
+## Get All Token Notifications
+
+```shell
+curl -X GET \
+  https://debug.bvnk.co/exchange/notify/all \
+  -H 'Cache-Control: no-cache' \
+  -H 'Postman-Token: c7aff4f8-a83b-42d4-af1b-a85289b48c0b' \
+  -H 'X-Auth-Token: 52c1881b-8283-482d-b55b-8530f7790b21'
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://debug.bvnk.co/exchange/notify/all"
+
+	req, _ := http.NewRequest("GET", url, nil)
+
+	req.Header.Add("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "62a18ddf-8bb9-8c5d-9f1c-1c105c1c6f52")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://debug.bvnk.co/exchange/notify/all',
+  headers:
+   { 'Postman-Token': '0967c21a-751a-4e97-40b4-e9f0fbdeb3a2',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': '52c1881b-8283-482d-b55b-8530f7790b21' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```python
+import requests
+
+url = "https://debug.bvnk.co/exchange/notify/all"
+
+headers = {
+    'X-Auth-Token': "52c1881b-8283-482d-b55b-8530f7790b21",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "676a6711-0197-74f7-6900-13eccc8c0e05"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+```java
+HttpResponse<String> response = Unirest.get("https://debug.bvnk.co/exchange/notify/all")
+  .header("X-Auth-Token", "52c1881b-8283-482d-b55b-8530f7790b21")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "ffbad06c-a196-e2e2-ef69-18094d84931f")
+  .asString();
+```
+
+> Successful response:
+
+```json
+{
+    "response": [
+        {
+            "Token": "bvk",
+            "Notified": false,
+            "Timestamp": "2018-02-17 07:16:25"
+        },
+        {
+            "Token": "eth",
+            "Notified": false,
+            "Timestamp": "2018-02-17 07:29:18"
+        },
+        {
+            "Token": "eos",
+            "Notified": false,
+            "Timestamp": "2018-02-17 07:43:54"
+        }
+    ]
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "Could not retrieve list of notifications"
+}
+```
+
+This route will respond with a list of all the current user notifications, as well as their status and their last added/updated time.
+
+`Token` is the token symbol, `Notified` is a boolean representing the state of notification for that token, and `Timestamp` is when the notification was added or updated.
+
+### HTTP Request
+
+`GET /exchange/notify/all`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+This requests requires no parameters.
