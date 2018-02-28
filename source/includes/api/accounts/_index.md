@@ -386,7 +386,239 @@ Parameter | Required | Description
 
 This request requires no parameters.
 
-## Get All Accounts
+## Get All Users
+
+```shell
+curl -X GET \
+  https://demo.bvnk.co/account/user \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: 2e3e1e5d-6f77-bfef-7e53-5606f86bca97' \
+  -H 'X-Auth-Token: 8400a09e-7676-4aa3-bce0-57a216b7f1b0'
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "net/http"
+  "io/ioutil"
+)
+
+func main() {
+
+  url := "https://demo.bvnk.co/account/user"
+
+  req, _ := http.NewRequest("GET", url, nil)
+
+  req.Header.Add("Content-Type", "application/json")
+  req.Header.Add("X-Auth-Token", "8400a09e-7676-4aa3-bce0-57a216b7f1b0")
+  req.Header.Add("Cache-Control", "no-cache")
+  req.Header.Add("Postman-Token", "a2252eec-ac2b-3fde-3a5d-d01b6bb50de7")
+
+  res, _ := http.DefaultClient.Do(req)
+
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
+
+  fmt.Println(res)
+  fmt.Println(string(body))
+
+}
+```
+
+```java
+HttpResponse<String> response = Unirest.get("https://demo.bvnk.co/account/user")
+  .header("Content-Type", "application/json")
+  .header("X-Auth-Token", "8400a09e-7676-4aa3-bce0-57a216b7f1b0")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "51b7d8f2-eda9-b59e-df2d-dadb2ab6a5f1")
+  .asString();
+```
+
+```javascript
+var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://demo.bvnk.co/account/user");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("X-Auth-Token", "8400a09e-7676-4aa3-bce0-57a216b7f1b0");
+xhr.setRequestHeader("Cache-Control", "no-cache");
+xhr.setRequestHeader("Postman-Token", "6bfd8d10-46a0-8eea-73b2-89c746d47cb4");
+
+xhr.send(data);
+
+```
+
+```python
+import requests
+
+url = "https://demo.bvnk.co/account/user"
+
+headers = {
+    'Content-Type': "application/json",
+    'X-Auth-Token': "8400a09e-7676-4aa3-bce0-57a216b7f1b0",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "5350373e-18dd-e5a3-c71d-65c4cc449bfc"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+> Successful response:
+
+```json
+{
+    "response": [{
+        "GivenName": "Customer",
+        "FamilyName": "Director",
+        "DateOfBirth": "1900-01-01",
+        "IdentificationNumber": "19000101-1234-007",
+        "ContactNumber1": "555-555-0007",
+        "ContactNumber2": "DIAL_PREFIX800-test-fax2",
+        "EmailAddress": "test7@bvnk.co",
+        "AddressLine1": "Address 1",
+        "AddressLine2": "Address 2",
+        "AddressLine3": "Address 3",
+        "PostalCode": "1234",
+        "Country": "AO",
+        "ExchangeCustomer": false,
+        "UserRole": "customer",
+        "Merchant": "9400ae23-8fd6-4062-be6d-0c417051fc3b",
+        "Customer": "ee99b544-6560-44b6-a68b-fc95300b0145",
+        "CustomerType": "",
+        "CustomerMetaID": "",
+        "CustomFields": {
+            "AddressCity": "Test",
+            "AddressComplexName": "Test",
+            "AddressProvince": "Test",
+            "AddressStreetName": "Test",
+            "AddressStreetNumber": "Test",
+            "AddressSuburb": "Test",
+            "AddressUnitNo": "Test",
+            "City": "Test",
+            "ComplexName": "Test",
+            "ContactnumberMobile": "0800-test-mobile3",
+            "DateOfBirth": "1900-01-01",
+            "EthnicGroup": "Caucasian",
+            "FullName": "Paul P. Coulson",
+            "Gender": "Male",
+            "HomeLanguage": "English",
+            "IDType": "Driver License",
+            "IDexipiry": "2020-01-01",
+            "Initials": "P.C.",
+            "MaritalStatus": "Single",
+            "Nationality": "United Kingdom",
+            "PreferredName": "Mr. Coulson",
+            "Province": "Test",
+            "StreetName": "Test",
+            "StreetNumber": "Test",
+            "Suburb": "Test",
+            "Title": "MR",
+            "UnitNo": "Test",
+            "isLocalResident": "Y"
+        }
+    }, {
+        "GivenName": "Customer1",
+        "FamilyName": "Admin",
+        "DateOfBirth": "1900-01-01",
+        "IdentificationNumber": "19000101-1234-008",
+        "ContactNumber1": "555-555-0009",
+        "ContactNumber2": "555555-4328",
+        "EmailAddress": "test8@bvnk.co",
+        "AddressLine1": "Address 1",
+        "AddressLine2": "Address 2",
+        "AddressLine3": "Address 3",
+        "PostalCode": "1234",
+        "Country": "AO",
+        "ExchangeCustomer": false,
+        "UserRole": "customer_admin",
+        "Merchant": "9400ae23-8fd6-4062-be6d-0c417051fc3b",
+        "Customer": "ee99b544-6560-44b6-a68b-fc95300b0145",
+        "CustomerType": "",
+        "CustomerMetaID": "",
+        "CustomFields": null
+    }, {
+        "GivenName": "Customer 1",
+        "FamilyName": "Employee",
+        "DateOfBirth": "1900-01-01",
+        "IdentificationNumber": "19000101-1234-009",
+        "ContactNumber1": "555-555-0010",
+        "ContactNumber2": "555555-4397",
+        "EmailAddress": "test9@bvnk.co",
+        "AddressLine1": "Address 1",
+        "AddressLine2": "Address 2",
+        "AddressLine3": "Address 3",
+        "PostalCode": "1234",
+        "Country": "AO",
+        "ExchangeCustomer": false,
+        "UserRole": "customer_staff",
+        "Merchant": "9400ae23-8fd6-4062-be6d-0c417051fc3b",
+        "Customer": "ee99b544-6560-44b6-a68b-fc95300b0145",
+        "CustomerType": "",
+        "CustomerMetaID": "",
+        "CustomFields": null
+    }, {
+        "GivenName": "Customer1 Subaccount",
+        "FamilyName": "Director",
+        "DateOfBirth": "1900-01-01",
+        "IdentificationNumber": "19000101-1234-010",
+        "ContactNumber1": "555-555-0012",
+        "ContactNumber2": "DIAL_PREFIX800-test1-fax2",
+        "EmailAddress": "test11@bvnk.co",
+        "AddressLine1": "Address 1",
+        "AddressLine2": "Address 2",
+        "AddressLine3": "Address 3",
+        "PostalCode": "1234",
+        "Country": "AO",
+        "ExchangeCustomer": false,
+        "UserRole": "customer_subaccount",
+        "Merchant": "9400ae23-8fd6-4062-be6d-0c417051fc3b",
+        "Customer": "ee99b544-6560-44b6-a68b-fc95300b0145",
+        "CustomerType": "",
+        "CustomerMetaID": "",
+        "CustomFields": null
+    }]
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "error message"
+}
+```
+
+This endpoint returns a collection of all users that the current user has permissions to view.
+
+### HTTP Request
+
+`GET https://demo.bvnk.co/account/user`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ----------- | ----------
+
+This request requires no parameters.
+
+## Get All Accounts (owned by current user)
 
 ```shell
 curl -X GET \
@@ -517,6 +749,157 @@ field `WalletAddress` will be returned. This is not a static value.
 ### HTTP Request
 
 `GET https://demo.bvnk.co/account/`
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ----------- | ----------
+
+This request requires no parameters.
+
+## Get All Accounts
+
+```shell
+curl -X GET \
+  https://demo.bvnk.co/account/all \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: f1858b57-6bab-cf56-ba54-4044e4260481' \
+  -H 'X-Auth-Token: 8400a09e-7676-4aa3-bce0-57a216b7f1b0'
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "net/http"
+  "io/ioutil"
+)
+
+func main() {
+
+  url := "https://demo.bvnk.co/account/all"
+
+  req, _ := http.NewRequest("GET", url, nil)
+
+  req.Header.Add("Content-Type", "application/json")
+  req.Header.Add("X-Auth-Token", "8400a09e-7676-4aa3-bce0-57a216b7f1b0")
+  req.Header.Add("Cache-Control", "no-cache")
+  req.Header.Add("Postman-Token", "1de3852a-6bc9-31b4-528f-3e2260a1481b")
+
+  res, _ := http.DefaultClient.Do(req)
+
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
+
+  fmt.Println(res)
+  fmt.Println(string(body))
+
+}
+```
+
+```java
+HttpResponse<String> response = Unirest.get("https://demo.bvnk.co/account/all")
+  .header("Content-Type", "application/json")
+  .header("X-Auth-Token", "8400a09e-7676-4aa3-bce0-57a216b7f1b0")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "23775726-4bfe-9b5e-4e7c-f080b0cbaff1")
+  .asString();
+```
+
+```javascript
+var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://demo.bvnk.co/account/all");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("X-Auth-Token", "8400a09e-7676-4aa3-bce0-57a216b7f1b0");
+xhr.setRequestHeader("Cache-Control", "no-cache");
+xhr.setRequestHeader("Postman-Token", "3c992704-078e-03bd-9488-dbd938f7e86d");
+
+xhr.send(data);
+
+```
+
+```python
+import requests
+
+url = "https://demo.bvnk.co/account/all"
+
+headers = {
+    'Content-Type': "application/json",
+    'X-Auth-Token': "8400a09e-7676-4aa3-bce0-57a216b7f1b0",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "15e5a727-6e94-7ada-0233-1abc37938c02"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+This endpoint returns a collection of all accounts that the current user has permissions to view. If an account is a cryptocurrency account, the additional 
+field `WalletAddress` will be returned. This is not a static value.
+
+> Successful response:
+
+```json
+{
+    "response": [
+        {
+            "AccountNumber": "9bd356cd-1c54-498d-b6b5-26a8d0a17940",
+            "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+            "AccountHolderName": "bvnk,Alice",
+            "AccountBalance": "3507.61865234375",
+            "Overdraft": "0",
+            "AvailableBalance": "3507.61865234375",
+            "Type": "",
+            "Currency": "usd",
+            "CurrencyType": "",
+            "Timestamp": 0
+        },
+        {
+            "AccountNumber": "738e813a-6f8f-498c-9274-dfbae618147b",
+            "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+            "AccountHolderName": "Test Merchant Ltd",
+            "AccountBalance": "0",
+            "Overdraft": "0",
+            "AvailableBalance": "0",
+            "Type": "",
+            "Currency": "btc",
+            "CurrencyType": "",
+            "Timestamp": 0,
+            "WalletAddress": "19kS6CczeNTxoKjNwubQGQFmyFQAwwopq"
+        }
+    ...
+  ]
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "Could not retrieve account listing"
+}
+```
+
+### HTTP Request
+
+`GET https://demo.bvnk.co/account/all`
 
 ### Headers
 
@@ -1420,4 +1803,5 @@ This endpoint will return a seed for a given cryptocurrency wallet linked to an 
 Parameter | Required | Description
 --------- | ----------- | ----------
 AccountNumber | true | Account number to get seed for. This account must be a cryptocurrency account.
+
 

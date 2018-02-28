@@ -14,7 +14,9 @@ toc_footers:
 
 includes:
   - errors
+  - api/user-signup/index
   - api/user-creation/index
+  - api/iam-user-creation/index
   - api/authorization/index
   - api/accounts/index
   - api/transactions/index
@@ -22,6 +24,7 @@ includes:
   - api/beneficiaries/index
   - api/kyc/index
   - api/merchants/index
+  - api/customers/index
   - api/exchange/index
   - api/notifications/index
   - api/integrations/index

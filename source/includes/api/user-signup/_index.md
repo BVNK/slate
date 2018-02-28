@@ -1,10 +1,10 @@
-# Admin User creation
+# User Signup
 
-> To create a new administrator:
+> To signup to BVNK:
 
 ```shell
 curl -X POST \
-  https://demo.bvnk.co/account/user \
+  https://demo.bvnk.co/account/signup \
   -H 'Authorization: Basic YnZuazpldml0YWJsZS1jYXVjdXMtZm9yZXNhdy1wcmVzc21hbi1mbGF0Y2FyLWZpZXJ5LW9mZnNob290LWhvdXI=' \
   -H 'Cache-Control: no-cache' \
   -H 'Postman-Token: a7d75f11-876a-9458-b195-43c967d62111' \
@@ -26,7 +26,7 @@ curl -X POST \
 ```python
 import requests
 
-url = "https://demo.bvnk.co/account/user"
+url = "https://demo.bvnk.co/account/signup"
 
 payload = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderGivenName\"\r\n\r\nDebug\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderFamilyName\"\r\n\r\nAccount\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderDateOfBirth\"\r\n\r\n1900-01-01\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderIdentificationNumber\"\r\n\r\n400000-0000-001\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderContactNumber1\"\r\n\r\n(558) 555-42381\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderEmailAddress\"\r\n\r\nalice@bankai.co\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine1\"\r\n\r\nAddress 1\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine2\"\r\n\r\nAddress 2\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine3\"\r\n\r\nAddress 3\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderPassword\"\r\n\r\npassword\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderPostalCode\"\r\n\r\n1234\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderCountry\"\r\n\r\nGB\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
 headers = {
@@ -45,38 +45,38 @@ print(response.text)
 package main
 
 import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io/ioutil"
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
 )
 
 func main() {
 
-	url := "https://demo.bvnk.co/account/user"
+  url := "https://demo.bvnk.co/account/signup"
 
-	payload := strings.NewReader("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderGivenName\"\r\n\r\nDebug\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderFamilyName\"\r\n\r\nAccount\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderDateOfBirth\"\r\n\r\n1900-01-01\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderIdentificationNumber\"\r\n\r\n400000-0000-001\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderContactNumber1\"\r\n\r\n(558) 555-42381\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderEmailAddress\"\r\n\r\nalice@bankai.co\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine1\"\r\n\r\nAddress 1\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine2\"\r\n\r\nAddress 2\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine3\"\r\n\r\nAddress 3\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderPassword\"\r\n\r\npassword\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderPostalCode\"\r\n\r\n1234\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderCountry\"\r\n\r\nGB\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+  payload := strings.NewReader("------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderGivenName\"\r\n\r\nDebug\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderFamilyName\"\r\n\r\nAccount\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderDateOfBirth\"\r\n\r\n1900-01-01\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderIdentificationNumber\"\r\n\r\n400000-0000-001\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderContactNumber1\"\r\n\r\n(558) 555-42381\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderEmailAddress\"\r\n\r\nalice@bankai.co\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine1\"\r\n\r\nAddress 1\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine2\"\r\n\r\nAddress 2\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderAddressLine3\"\r\n\r\nAddress 3\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderPassword\"\r\n\r\npassword\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderPostalCode\"\r\n\r\n1234\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"AccountHolderCountry\"\r\n\r\nGB\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
 
-	req, _ := http.NewRequest("POST", url, payload)
+  req, _ := http.NewRequest("POST", url, payload)
 
-	req.Header.Add("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+  req.Header.Add("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
   req.Header.Add("Authorization", "Basic YnZuazpldml0YWJsZS1jYXVjdXMtZm9yZXNhdy1wcmVzc21hbi1mbGF0Y2FyLWZpZXJ5LW9mZnNob290LWhvdXI=")
-	req.Header.Add("Cache-Control", "no-cache")
-	req.Header.Add("Postman-Token", "98be2b0b-b895-e1e4-22e2-d2d26aa21c37")
+  req.Header.Add("Cache-Control", "no-cache")
+  req.Header.Add("Postman-Token", "98be2b0b-b895-e1e4-22e2-d2d26aa21c37")
 
-	res, _ := http.DefaultClient.Do(req)
+  res, _ := http.DefaultClient.Do(req)
 
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println(res)
-	fmt.Println(string(body))
+  fmt.Println(res)
+  fmt.Println(string(body))
 
 }
 ```
 
 ```java
-HttpResponse<String> response = Unirest.post("https://demo.bvnk.co/account/user")
+HttpResponse<String> response = Unirest.post("https://demo.bvnk.co/account/signup")
   .header("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
   .header("Authorization", "Basic YnZuazpldml0YWJsZS1jYXVjdXMtZm9yZXNhdy1wcmVzc21hbi1mbGF0Y2FyLWZpZXJ5LW9mZnNob290LWhvdXI=")
   .header("Cache-Control", "no-cache")
@@ -109,7 +109,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://demo.bvnk.co/account/user");
+xhr.open("POST", "https://demo.bvnk.co/account/signup");
 xhr.setRequestHeader("Authorization", "Basic YnZuazpldml0YWJsZS1jYXVjdXMtZm9yZXNhdy1wcmVzc21hbi1mbGF0Y2FyLWZpZXJ5LW9mZnNob290LWhvdXI=");
 xhr.setRequestHeader("Cache-Control", "no-cache");
 xhr.setRequestHeader("Postman-Token", "7c40dcd5-3eef-f583-e3e6-f99320a9e796");
@@ -117,7 +117,7 @@ xhr.setRequestHeader("Postman-Token", "7c40dcd5-3eef-f583-e3e6-f99320a9e796");
 xhr.send(data);
 ```
 
-While all accounts must be linked to users and Know Your Customer requirements center around users, not all users need to have an account. At BVNK, every user has a role, including Administrators, Merchants, Merchant Customers and regular account holders. This endpoint allows Administrators that aren't BVNK users to create users through HTTP authentication. This is necessary for new installations where no user exists and the first administrator must be created. It is therefore not an endpoint to be used often.
+Users act as account holders and need to be created as the first action. All accounts need to be linked to users, and Know Your Customer requirements centre around users. Country must be valid ISO2 code, a list of valid countries and their codes can be retrieved through `GET /countries`. The signup request should be done via a BVNK interface (web or mobile app) because it also uses HTTP authentication as a new customer would not have an account.
 
 > Successful response:
 
@@ -137,11 +137,11 @@ While all accounts must be linked to users and Know Your Customer requirements c
 
 ### HTTP Request
 
-`POST https://demo.bvnk.co/account/user`
+`POST https://demo.bvnk.co/account/signup`
 
 ### Headers
 
-`Authorization: {Basic Basic YnZuazpldml0YWJsZS1jYXVjdXMtZm9yZXNhdy1wcmVzc21hbi1mbGF0Y2FyLWZpZXJ5LW9mZnNob290LWhvdXI=}`
+`X-Auth-Token: {auth token}`
 
 ### Query Parameters
 
@@ -164,3 +164,4 @@ AccountHolderPassword | true | Password for the users account
 <aside class="notice">
 The password sent through on this call will used along with the <code>AccountHolderIdentificationNumber</code> to generate authentication credentials.
 </aside>
+
