@@ -1538,3 +1538,131 @@ This route will respond with a list of all the current user notifications, as we
 ### URL Parameters
 
 This requests requires no parameters.
+
+## Get Stripe Ephemeral Keys
+
+```shell
+curl -X POST \
+  https://demo.bvnk.co/exchange/ephemeral_keys \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: 5b14ebff-7fde-1db3-f377-95a672175360' \
+  -H 'X-Auth-Token: 56e54a03-87b3-4635-b173-43abffafa299' \
+  -d '{
+  "api_version":"2018-02-28"
+}'
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://demo.bvnk.co/exchange/ephemeral_keys"
+
+	payload := strings.NewReader("{\n  \"api_version\":\"2018-02-28\"\n}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("X-Auth-Token", "56e54a03-87b3-4635-b173-43abffafa299")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Postman-Token", "a88e3234-4679-f670-47a7-fcb5df612962")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://demo.bvnk.co/exchange/ephemeral_keys',
+  headers:
+   { 'Postman-Token': '2ad893b8-9f66-4efb-1963-4212358b1216',
+     'Cache-Control': 'no-cache',
+     'X-Auth-Token': '56e54a03-87b3-4635-b173-43abffafa299',
+     'Content-Type': 'application/json' },
+  body: { api_version: '2018-02-28' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://demo.bvnk.co/exchange/ephemeral_keys"
+
+payload = "{\n  \"api_version\":\"2018-02-28\"\n}"
+headers = {
+    'Content-Type': "application/json",
+    'X-Auth-Token': "56e54a03-87b3-4635-b173-43abffafa299",
+    'Cache-Control': "no-cache",
+    'Postman-Token': "e894c556-2fcb-54ef-2274-df6d4bdf22a9"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```java
+HttpResponse<String> response = Unirest.post("https://demo.bvnk.co/exchange/ephemeral_keys")
+  .header("Content-Type", "application/json")
+  .header("X-Auth-Token", "56e54a03-87b3-4635-b173-43abffafa299")
+  .header("Cache-Control", "no-cache")
+  .header("Postman-Token", "4d5c3eee-ac50-5d21-d7b5-0e3ba7e5f3cf")
+  .body("{\n  \"api_version\":\"2018-02-28\"\n}")
+  .asString();
+```
+
+> Successful response:
+
+```json
+{
+    "response": "{Stripe ephemeral key}""
+}
+```
+
+> Error response:
+
+```json
+{
+    "error": "Could not get Stripe Ephemeral Key""
+}
+```
+
+This route generates a Stripe Ephemeral Key to used in a Stripe implementation. This follows documentation found at [Stripe's official documentation](https://stripe.com/docs/mobile/ios/standard).
+
+### HTTP Request
+
+`GET /exchange/ephemeral_keys``
+
+### Headers
+
+`X-Auth-Token: {auth token}`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ----------- | ----------
+api_version | true | The API version required by Stripe.
