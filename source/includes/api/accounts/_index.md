@@ -346,17 +346,25 @@ print(response.text)
 ```json
 {
     "response": {
-        "GivenName": "Alice",
-        "FamilyName": "bvnk",
+        "GivenName": "Test",
+        "FamilyName": "User1",
         "DateOfBirth": "1900-01-01",
-        "IdentificationNumber": "300000-0000-001",
-        "ContactNumber1": "558555-1234",
+        "IdentificationNumber": "555123412345",
+        "ContactNumber1": "UserContactNumber",
         "ContactNumber2": "",
-        "EmailAddress": "alice@bvnk.co",
+        "EmailAddress": "test@user.com",
         "AddressLine1": "Address 1",
         "AddressLine2": "Address 2",
         "AddressLine3": "Address 3",
-        "PostalCode": "1234"
+        "PostalCode": "1234",
+        "Country": "GB",
+        "ExchangeCustomer": false,
+        "UserRole": "default",
+        "Merchant": "",
+        "Customer": "",
+        "CustomerType": "",
+        "CustomerMetaID": "",
+        "CustomFields": null
     }
 }
 ```
@@ -709,32 +717,89 @@ field `WalletAddress` will be returned. This is not a static value.
 {
     "response": [
         {
-            "AccountNumber": "9bd356cd-1c54-498d-b6b5-26a8d0a17940",
-            "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
-            "AccountHolderName": "bvnk,Alice",
-            "AccountBalance": "3507.61865234375",
-            "Overdraft": "0",
-            "AvailableBalance": "3507.61865234375",
-            "Type": "",
-            "Currency": "usd",
-            "CurrencyType": "",
-            "Timestamp": 0
+            "Account": {
+                "AccountNumber": "90c68cb4-e44d-42c7-9b03-1b3845636e60",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "User1,Test",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "bct",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "mfeyrbigCqw6NDzZXATkyic5Jd8ZUieTuA",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "calypso calypso",
+                "bvnk_private_resource": "yes",
+                "namespace": "user_8604125138082100"
+            }
         },
         {
-            "AccountNumber": "738e813a-6f8f-498c-9274-dfbae618147b",
-            "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
-            "AccountHolderName": "Test Merchant Ltd",
-            "AccountBalance": "0",
-            "Overdraft": "0",
-            "AvailableBalance": "0",
-            "Type": "",
-            "Currency": "btc",
-            "CurrencyType": "",
-            "Timestamp": 0,
-            "WalletAddress": "19kS6CczeNTxoKjNwubQGQFmyFQAwwopq"
+            "Account": {
+                "AccountNumber": "165482e1-0acd-4b3c-b737-3c3b67203128",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "User1,Test",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "bct",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "moa42qAWq6B5zM7mChuaCqTGX6s9jSesm4",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "east athena",
+                "bvnk_private_resource": "yes",
+                "namespace": "user_8604125138082100"
+            }
+        },
+        {
+            "Account": {
+                "AccountNumber": "6865a99a-12c0-470f-b505-4582013ba7cb",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "Test Merchant Ltd",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "usd",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "alfred apple",
+                "namespace": "user_8604125138082100"
+            }
+        },
+        {
+            "Account": {
+                "AccountNumber": "8e8968e5-c3b9-49a5-b30f-a671f966243f",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "User1,Test",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "zar",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "east echo",
+                "bvnk_private_resource": "yes",
+                "namespace": "user_8604125138082100"
+            }
         }
-		...
-	]
+    ]
 }
 ```
 
@@ -860,32 +925,89 @@ field `WalletAddress` will be returned. This is not a static value.
 {
     "response": [
         {
-            "AccountNumber": "9bd356cd-1c54-498d-b6b5-26a8d0a17940",
-            "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
-            "AccountHolderName": "bvnk,Alice",
-            "AccountBalance": "3507.61865234375",
-            "Overdraft": "0",
-            "AvailableBalance": "3507.61865234375",
-            "Type": "",
-            "Currency": "usd",
-            "CurrencyType": "",
-            "Timestamp": 0
+            "Account": {
+                "AccountNumber": "90c68cb4-e44d-42c7-9b03-1b3845636e60",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "User1,Test",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "bct",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "mfeyrbigCqw6NDzZXATkyic5Jd8ZUieTuA",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "calypso calypso",
+                "bvnk_private_resource": "yes",
+                "namespace": "user_8604125138082100"
+            }
         },
         {
-            "AccountNumber": "738e813a-6f8f-498c-9274-dfbae618147b",
-            "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
-            "AccountHolderName": "Test Merchant Ltd",
-            "AccountBalance": "0",
-            "Overdraft": "0",
-            "AvailableBalance": "0",
-            "Type": "",
-            "Currency": "btc",
-            "CurrencyType": "",
-            "Timestamp": 0,
-            "WalletAddress": "19kS6CczeNTxoKjNwubQGQFmyFQAwwopq"
+            "Account": {
+                "AccountNumber": "165482e1-0acd-4b3c-b737-3c3b67203128",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "User1,Test",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "bct",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "moa42qAWq6B5zM7mChuaCqTGX6s9jSesm4",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "east athena",
+                "bvnk_private_resource": "yes",
+                "namespace": "user_8604125138082100"
+            }
+        },
+        {
+            "Account": {
+                "AccountNumber": "6865a99a-12c0-470f-b505-4582013ba7cb",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "Test Merchant Ltd",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "usd",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "alfred apple",
+                "namespace": "user_8604125138082100"
+            }
+        },
+        {
+            "Account": {
+                "AccountNumber": "8e8968e5-c3b9-49a5-b30f-a671f966243f",
+                "BankNumber": "a0299975-b8e2-4358-8f1a-911ee12dbaac",
+                "AccountHolderName": "User1,Test",
+                "AccountBalance": "0",
+                "Overdraft": "0",
+                "AvailableBalance": "0",
+                "Type": "",
+                "Currency": "zar",
+                "CurrencyType": "",
+                "Timestamp": 0,
+                "WalletAddress": "",
+                "AccountHolderID": ""
+            },
+            "AccountMeta": {
+                "bvnk_account_name": "east echo",
+                "bvnk_private_resource": "yes",
+                "namespace": "user_8604125138082100"
+            }
         }
-    ...
-  ]
+    ]
 }
 ```
 
